@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import SearchBox from './SearchBox';
 import PostsList from './PostsList';
@@ -24,17 +24,36 @@ const posts = [
   }
 ];
 
-const SearchView = () => {
-  const submitHandler = event => {
-    event.preventDefault();
+class SearchView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      posts
+    };
+
+    this.submitHandler = this.submitHandler.bind(this);
+  }
+
+  submitHandler(value) {
+    const filteredPosts = this.filterPosts(value, posts);
+    this.setState({posts: filteredPosts});
   };
 
-  return (
-    <div className="search-view">
-      <SearchBox submitHandler={submitHandler}/>
-      <PostsList posts={posts}/>
-    </div>
-  )
-};
+  filterPosts(value, posts) {
+    return posts.filter(post => {
+      return post.body.indexOf(value) !== -1;
+    });
+  };
+
+  render() {
+    return (
+      <div className="search-view">
+        <SearchBox submitHandler={this.submitHandler}/>
+        <PostsList posts={this.state.posts}/>
+      </div>
+    )
+  }
+}
 
 export default SearchView;
