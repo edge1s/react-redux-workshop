@@ -1,17 +1,23 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
-const Post = ({post: {id, title, body}}) => {
+const Post = ({hideComments, post: {id, title, body, comments}}) => {
+  const commentsHtml = comments && comments.map(comment => {
+    return <div key={comment.id} className="post_comment-body">{comment.body}</div>;
+  });
   return (
     <div className="post">
-      <div className="post_title"><Link to={`/post/${id}`}>{title}</Link></div>
-      <div className="post_body">{body}</div>
+      <div className="post__title"><Link to={`/post/${id}`}>{title}</Link></div>
+      <div className="post__body">{body}</div>
+      { !hideComments ?
+        <div className="post__comments">{commentsHtml}</div> : ''}
     </div>
   )
 };
 
 Post.propTypes = {
-  posts: PropTypes.object
+  post: PropTypes.object,
+  hideComments: PropTypes.bool
 };
 
 export default Post;

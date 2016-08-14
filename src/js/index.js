@@ -7,7 +7,7 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import App from './containers/App';
 import SearchView from './components/SearchView';
 import store from './store';
-import PostView from './components/PostView';
+import PostView from './containers/PostView';
 
 const enhancedHistory = syncHistoryWithStore(browserHistory, store);
 

@@ -8,13 +8,16 @@ const PostsList = props => {
       return post.body.indexOf(value) !== -1;
     });
   };
-  const filteredPosts = filterPosts(props.searchVal, props.posts);
 
+  const postsArr = [...props.posts].map(([id, post]) => {
+    return post;
+  });
+  const filteredPosts = filterPosts(props.searchVal, postsArr);
   const posts = filteredPosts.map((post, idx) => {
-    return <Post key={idx} post={post}/>
+    return <Post key={idx} post={post} hideComments={props.hideComments}/>
   });
 
-  return(
+  return (
     <div className="posts-list">
       {posts}
     </div>
@@ -22,8 +25,9 @@ const PostsList = props => {
 };
 
 PostsList.propTypes = {
-  posts: PropTypes.array,
-  searchVal: PropTypes.string
+  posts: PropTypes.object,
+  searchVal: PropTypes.string,
+  hideComments: PropTypes.bool
 };
 
 export default PostsList;

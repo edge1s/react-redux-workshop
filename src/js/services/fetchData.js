@@ -8,11 +8,20 @@ const fetchData = () => {
     dispatch(blogLoading(true));
     Promise.all([getPosts(), getUsers()])
       .then(values => {
-        dispatch(attachPosts(values[0]));
-        dispatch(attachUsers(values[1]));
+        dispatch(attachPosts(arrayToMap(values[0])));
+        dispatch(attachUsers(arrayToMap(values[1])));
         dispatch(blogLoading(false));
       });
   }
+};
+
+const arrayToMap = arr => {
+  const map = new Map();
+  arr.forEach(el => {
+    map.set(el.id, el);
+  });
+
+  return map;
 };
 
 export default fetchData;

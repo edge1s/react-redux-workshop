@@ -7,7 +7,7 @@ const SearchView = () => {
   return (
     <div className="search-view">
       <SearchBox/>
-      <PostsList/>
+      <PostsList hideComments={true}/>
     </div>
   )
 };

@@ -2,6 +2,7 @@ import {
   SEARCH,
   ATTACH_POSTS,
   ATTACH_USERS,
+  ATTACH_POST_COMMENTS,
   SET_SEARCH_INPUT,
   BLOG_LOADING
 } from '../constants';
@@ -24,6 +25,13 @@ export const attachUsers = users => {
   return {
     type: ATTACH_USERS,
     payload: users
+  }
+};
+
+export const attachPostComments = commentsData => {
+  return {
+    type: ATTACH_POST_COMMENTS,
+    payload: commentsData
   }
 };
 
