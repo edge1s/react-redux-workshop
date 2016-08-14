@@ -2,7 +2,11 @@ import {
   SEARCH
 } from '../constants';
 
-const blogReducer = (state = {}, action) => {
+const defaultState = {
+  searchVal: ''
+};
+
+const blogReducer = (state = defaultState, action) => {
   const {type, payload} = action;
 
   switch(type) {

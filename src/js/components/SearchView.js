@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import SearchBox from '../containers/SearchBox';
-import PostsList from './PostsList';
+import PostsList from '../containers/PostsList';
 
 const posts = [
   {
@@ -31,20 +31,7 @@ class SearchView extends Component {
     this.state = {
       posts
     };
-
-    this.submitHandler = this.submitHandler.bind(this);
   }
-
-  submitHandler(value) {
-    const filteredPosts = this.filterPosts(value, posts);
-    this.setState({posts: filteredPosts});
-  };
-
-  filterPosts(value, posts) {
-    return posts.filter(post => {
-      return post.body.indexOf(value) !== -1;
-    });
-  };
 
   render() {
     return (
