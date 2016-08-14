@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PropTypes, Component} from 'react';
 
 import SearchBox from '../containers/SearchBox';
 import PostsList from '../containers/PostsList';
@@ -28,19 +28,21 @@ class SearchView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      posts
-    };
+    this.props.attachPosts(posts);
   }
 
   render() {
     return (
       <div className="search-view">
         <SearchBox/>
-        <PostsList posts={this.state.posts}/>
+        <PostsList/>
       </div>
     )
   }
 }
+
+SearchView.PropTypes = {
+  attachPosts: PropTypes.func
+};
 
 export default SearchView;
