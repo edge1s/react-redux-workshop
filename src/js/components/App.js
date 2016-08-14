@@ -5,10 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    getPosts()
-      .then(posts => {
-        this.props.attachPosts(posts);
-      });
+    this.props.attachPosts(getPosts());
   }
 
   render() {
