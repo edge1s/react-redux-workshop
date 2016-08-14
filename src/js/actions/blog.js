@@ -1,7 +1,9 @@
 import {
   SEARCH,
   ATTACH_POSTS,
-  SET_SEARCH_INPUT
+  ATTACH_USERS,
+  SET_SEARCH_INPUT,
+  BLOG_LOADING
 } from '../constants';
 
 export const search = searchVal => {
@@ -18,9 +20,23 @@ export const attachPosts = posts => {
   }
 };
 
+export const attachUsers = users => {
+  return {
+    type: ATTACH_USERS,
+    payload: users
+  }
+};
+
 export const setSearchInput = inputVal => {
   return {
     type: SET_SEARCH_INPUT,
     payload: inputVal
+  }
+};
+
+export const blogLoading = loading => {
+  return {
+    type: BLOG_LOADING,
+    payload: loading
   }
 };

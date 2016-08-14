@@ -1,24 +1,26 @@
 import React, {PropTypes, Component} from 'react';
-import {getPosts} from '../services/posts';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.props.attachPosts(getPosts());
+    this.props.fetchData();
   }
 
   render() {
+    const {children, loading} = this.props;
     return (
       <div className="app">
-        {this.props.children}
+        { !loading ?
+          <div className="view">{children}</div> : 'Loading...' }
       </div>
     )
   }
 }
 
-App.PropTypes = {
-  attachPosts: PropTypes.func
+App.propTypes = {
+  fetchData: PropTypes.func,
+  loading: PropTypes.bool
 };
 
 export default App;
