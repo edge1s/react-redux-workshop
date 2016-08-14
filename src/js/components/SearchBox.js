@@ -5,10 +5,6 @@ import {search} from '../actions/blog';
 class SearchBox extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      searchVal: ''
-    }
   }
 
   render() {
@@ -16,10 +12,10 @@ class SearchBox extends Component {
       <div className="search-box">
         <form className="search-box__form" onSubmit={event => {
           event.preventDefault();
-          this.props.search(this.state.searchVal);
+          this.props.search(this.props.searchInputVal);
         }}>
-          <input type="text" value={this.state.searchVal} onChange={event => {
-            this.setState({searchVal: event.target.value});
+          <input type="text" value={this.props.searchInputVal} onChange={event => {
+            this.props.setSearchInput(event.target.value);
           }}/>
           <input type="submit" value="search"/>
         </form>
@@ -29,7 +25,9 @@ class SearchBox extends Component {
 }
 
 SearchBox.propTypes = {
-  search: PropTypes.func
+  search: PropTypes.func,
+  setSearchInput: PropTypes.func,
+  searchInputVal: PropTypes.string
 };
 
 export default SearchBox;
