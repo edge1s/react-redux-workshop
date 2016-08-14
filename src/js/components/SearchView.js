@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import SearchBox from '../components/SearchBox';
+import SearchBox from '../containers/SearchBox';
 import PostsList from './PostsList';
 
 const posts = [
