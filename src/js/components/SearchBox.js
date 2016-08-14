@@ -1,4 +1,7 @@
 import React, {PropTypes, Component} from 'react';
+import {connect} from 'react-redux';
+
+import {search} from '../actions/blog';
 
 class SearchBox extends Component {
   constructor(props) {
@@ -14,7 +17,7 @@ class SearchBox extends Component {
       <div className="search-box">
         <form className="search-box__form" onSubmit={event => {
           event.preventDefault();
-          this.props.submitHandler(this.state.searchVal);
+          this.props.dispatch(search(this.state.searchVal));
         }}>
           <input type="text" value={this.state.searchVal} onChange={event => {
             this.setState({searchVal: event.target.value});
@@ -26,8 +29,5 @@ class SearchBox extends Component {
   }
 }
 
-SearchBox.propTypes = {
-  submitHandler: PropTypes.func
-};
-
-export default SearchBox;
+// it's not good approach. I won't continue with it. Go to next step.
+export default connect()(SearchBox);

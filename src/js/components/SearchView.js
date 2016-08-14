@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import SearchBox from './SearchBox';
+import SearchBox from '../components/SearchBox';
 import PostsList from './PostsList';
 
 const posts = [
@@ -49,7 +49,7 @@ class SearchView extends Component {
   render() {
     return (
       <div className="search-view">
-        <SearchBox submitHandler={this.submitHandler}/>
+        <SearchBox/>
         <PostsList posts={this.state.posts}/>
       </div>
     )
