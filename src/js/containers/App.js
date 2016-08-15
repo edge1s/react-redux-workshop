@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import App from '../components/App';
-import fetchData from '../services/fetchData';
+import {fetchData} from '../actions/blog';
 
 const mapStateToProps = store => {
   return {

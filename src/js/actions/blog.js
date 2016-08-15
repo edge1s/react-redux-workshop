@@ -4,7 +4,8 @@ import {
   ATTACH_USERS,
   ATTACH_POST_COMMENTS,
   SET_SEARCH_INPUT,
-  BLOG_LOADING
+  BLOG_LOADING,
+  FETCH_DATA
 } from '../constants';
 
 import {createAction} from 'redux-actions';
@@ -15,3 +16,4 @@ export const attachUsers = createAction(ATTACH_USERS);
 export const attachPostComments = createAction(ATTACH_POST_COMMENTS);
 export const setSearchInput = createAction(SET_SEARCH_INPUT);
 export const blogLoading = createAction(BLOG_LOADING);
+export const fetchData = createAction(FETCH_DATA);
