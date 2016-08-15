@@ -15,30 +15,38 @@ const defaultState = {
   loading: true
 };
 
-const blogReducer = (state = defaultState, action) => {
-  const {type, payload} = action;
+import {handleActions} from 'redux-actions';
 
-  switch (type) {
-    case SEARCH:
-      return {...state, searchVal: payload};
-    case ATTACH_POSTS:
-      return {...state, posts: payload};
-    case ATTACH_USERS:
-      return {...state, users: payload};
-    case ATTACH_POST_COMMENTS:
-      const postId = payload[0].postId;
-      const stateCopy = {...state};
-      let post = stateCopy.posts.get(postId);
-      post = {...post, comments: payload};
-      stateCopy.posts.set(postId, post);
-      return {...state, posts: state.posts};
-    case SET_SEARCH_INPUT:
-      return {...state, searchInputVal: payload};
-    case BLOG_LOADING:
-      return {...state, loading: payload};
-    default:
-      return state;
+const blogReducer = handleActions({
+  [SEARCH]: (state, action) => ({...state, searchVal: action.payload}),
+  [ATTACH_POSTS]: (state, action) => ({...state, posts: action.payload}),
+  [ATTACH_USERS]: (state, action) => ({...state, users: action.payload}),
+  [ATTACH_POST_COMMENTS]: {
+    next: attachPostCommentsSuccess,
+    throw: attachPostCommentsError
+  },
+  [SET_SEARCH_INPUT]: (state, action) => ({...state, searchInputVal: action.payload}),
+  [BLOG_LOADING]: (state, action) => ({...state, loading: action.payload}),
+
+}, defaultState);
+
+function attachPostCommentsSuccess(state, action) {
+  const {payload} = action;
+  if (payload && payload[0] && payload[0].postId) {
+    const postId = payload[0].postId;
+    const stateCopy = {...state};
+    let post = stateCopy.posts.get(postId);
+    post = {...post, comments: payload};
+    stateCopy.posts.set(postId, post);
+    return {...state, posts: state.posts};
+  } else {
+    return state;
   }
-};
+}
+
+function attachPostCommentsError(state, action) {
+  console.error('error fetching comments');
+  return state;
+}
 
 export default blogReducer;

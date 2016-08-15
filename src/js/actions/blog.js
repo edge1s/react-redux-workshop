@@ -7,44 +7,11 @@ import {
   BLOG_LOADING
 } from '../constants';
 
-export const search = searchVal => {
-  return {
-    type: SEARCH,
-    payload: searchVal
-  }
-};
+import {createAction} from 'redux-actions';
 
-export const attachPosts = posts => {
-  return {
-    type: ATTACH_POSTS,
-    payload: posts
-  }
-};
-
-export const attachUsers = users => {
-  return {
-    type: ATTACH_USERS,
-    payload: users
-  }
-};
-
-export const attachPostComments = commentsData => {
-  return {
-    type: ATTACH_POST_COMMENTS,
-    payload: commentsData
-  }
-};
-
-export const setSearchInput = inputVal => {
-  return {
-    type: SET_SEARCH_INPUT,
-    payload: inputVal
-  }
-};
-
-export const blogLoading = loading => {
-  return {
-    type: BLOG_LOADING,
-    payload: loading
-  }
-};
+export const search = createAction(SEARCH);
+export const attachPosts = createAction(ATTACH_POSTS);
+export const attachUsers = createAction(ATTACH_USERS);
+export const attachPostComments = createAction(ATTACH_POST_COMMENTS);
+export const setSearchInput = createAction(SET_SEARCH_INPUT);
+export const blogLoading = createAction(BLOG_LOADING);
